@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todo List</title>
+    <style>
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+	<h1 style="color: brown;">Codeathon Todo Application</h1>
+		<h1>Create New Todo</h1>
+	    <form th:action="@{/create_todo}" method="post">
+		    <label for="userName"style="font-weight: bold; color: blue;">User Name:</label>
+	        <input type="text" name="userName" required style="width: 170px; padding: 5px;">
+
+	        <label for="description"style="font-weight: bold; color: blue;">Description:</label>
+	        <input type="text" name="description" required style="width: 170px; padding: 5px;">
+	
+	        <label for="dueDate"style="font-weight: bold; color: blue;">Due Date:</label>
+	        <input type="date" name="dueDate" required style="width: 170px; padding: 5px;">
+	
+	        <label for="priorityLevels"style="font-weight: bold; color: blue;">Priority Levels:</label>
+	        <input type="text" name="priorityLevels" required style="width: 170px; padding: 5px;">
+	
+	        <label for="taskCategories"style="font-weight: bold; color: blue;">Task Categories:</label>
+	        <input type="text" name="taskCategories" required style="width: 170px; padding: 5px;">
+	
+	        <button type="submit" style="background-color: mediumseagreen; color: white; border: none; cursor: pointer; padding: 6px 16px; font-size: 16px;">Submit</button>
+	     </form>
+	<div style="height: 30px;"></div>   
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Priority Levels</th>
+                <th>Task Categories</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.userName}"></td>
+                <td th:text="${todo.description}"></td>
+                <td th:text="${todo.dueDate}"></td>
+                <td th:text="${todo.priorityLevels}"></td>
+                <td th:text="${todo.taskCategories}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
