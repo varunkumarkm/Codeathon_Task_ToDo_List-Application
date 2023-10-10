@@ -2,11 +2,9 @@ package codeathon.app.Services;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import codeathon.app.Entities.Todo;
 import codeathon.app.Exception.ResourceNotFoundException;
 import codeathon.app.Payload.TodoDTO;
@@ -26,7 +24,7 @@ public class TodoServiceThymeleaf {
 
 	public List<TodoDTO> getAllTodos() {
 		List<Todo> todos = todoRepository.findAll();
-		return todos.stream().map(todoList -> mapToDTO(todoList)).collect(Collectors.toList());
+		return todos.stream().map(todoDto -> mapToDTO(todoDto)).collect(Collectors.toList());
 	}
 	
 	public TodoDTO getTodoById(long id) {
@@ -44,10 +42,16 @@ public class TodoServiceThymeleaf {
 		return dto;
 	}
 	
+	public void deleteTodo(Long id) {
+		todoRepository.deleteById(id);
+	}
 	
-	
-	
-	
+	public TodoDTO updateTodo(TodoDTO todoDto) {
+		Todo todo = mapToEntity(todoDto);
+		Todo todoEntity = todoRepository.save(todo);
+		TodoDTO dto = mapToDTO(todoEntity);
+		return dto;
+	}
 	
 	
 	

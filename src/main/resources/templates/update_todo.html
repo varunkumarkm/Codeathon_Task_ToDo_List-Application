@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Todo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  h2 {
+    color: #4caf50;
+  }
+</style>
+</head>
+<body>
+  <h1>Update Todo</h1>
+  <form th:action="@{/update_todo}" method="post">
+    <label for="id"style="font-weight: bold; color: blue;">ID:</label>
+    <input type="text" name="id" required th:value="${existingTodo.id}">
+    
+    <label for="userName"style="font-weight: bold; color: blue;">User Name:</label>
+    <input type="text" name="userName" required th:value="${existingTodo.userName}">
+
+    <label for="description"style="font-weight: bold; color: blue;">Description:</label>
+    <input type="text" name="description" required th:value="${existingTodo.description}">
+
+    <label for="dueDate"style="font-weight: bold; color: blue;">Due Date:</label>
+    <input type="date" name="dueDate" required th:value="${existingTodo.dueDate}">
+
+    <label for="priorityLevels"style="font-weight: bold; color: blue;">Priority Levels:</label>
+    <input type="text" name="priorityLevels" required th:value="${existingTodo.priorityLevels}">
+
+    <label for="taskCategories"style="font-weight: bold; color: blue;">Task Categories:</label>
+    <input type="text" name="taskCategories" required th:value="${existingTodo.taskCategories}">
+
+    <button type="submit" th:value="update">Update</button>
+  </form>
+  <h2 th:text="${message}"></h2>
+</body>
+</html>
