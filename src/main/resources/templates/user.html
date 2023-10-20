@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e2433;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #45b6fe;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #0e2433;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #45b6fe;
+        }
+
+        /* Add more styles and components for your dashboard here */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>USER Dashboard</h1>
+    </div>
+    <div class="container">
+        <h2>Welcome, [[${user.getFullname()}]]</h2>
+        
+        <span sec:authorize="isAuthenticated">
+        <a th:href="@{/logout}">
+         Logout
+        
+        </a>
+        
+        </span>
+
+    </div>
+    <h1>Welcome to Codeathon Application</h1>
+    
+     <h2 style="color: #45b6fe;">To-Do List</h2>
+
+     <a th:href="@{/todos_list}">View To-Do List</a>
+     <ul>
+		<h3>
+	        <li><a href="https://www.youtube.com"> Youtube</a></li>
+	        <li><a href="https://www.google.com">Google</a></li>
+	        <li><a href="https://www.udemy.com">Udemy</a></li>
+	        <li><a href="https://app.pluralsight.com">Pluralsite</a></li>
+	        <li><a href="https://www.coursera.com">Coursera</a></li>
+        </h3>
+     </ul>
+</body>
+</html>

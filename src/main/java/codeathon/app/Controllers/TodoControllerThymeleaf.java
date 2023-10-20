@@ -28,9 +28,9 @@ public class TodoControllerThymeleaf {
     }
     
     @GetMapping("/todos_list/{id}")
-    public String showTodoById(@PathVariable long id, ModelMap model) {
+    public String showTodoById(@PathVariable long todoId, ModelMap model) {
     	try {
-    	TodoDTO todoDTO = todoservice.getTodoById(id);
+    	TodoDTO todoDTO = todoservice.getTodoById(todoId);
     	model.addAttribute("todoDTO", todoDTO);
 		return "todos_list";
     	} catch (ResourceNotFoundException e) {
@@ -47,16 +47,16 @@ public class TodoControllerThymeleaf {
     }
     
     @RequestMapping("/delete_todo")
-    public String deleteOneTodo(@RequestParam("id") long id, ModelMap model) {
-    	todoservice.deleteTodo(id);
+    public String deleteOneTodo(@RequestParam("todoId") long todoId, ModelMap model) {
+    	todoservice.deleteTodo(todoId);
     	List<TodoDTO> todos = todoservice.getAllTodos();
     	model.addAttribute("todos", todos);
         return "redirect:todos_list";
     }
   
     @RequestMapping("/update")
-    public String updateOneTodo(@RequestParam("id") long id, ModelMap model) {
-        TodoDTO existingTodo = todoservice.getTodoById(id);
+    public String updateOneTodo(@RequestParam("todoId") long todoId, ModelMap model) {
+        TodoDTO existingTodo = todoservice.getTodoById(todoId);
         model.addAttribute("existingTodo", existingTodo);
         return "update_todo";
     }
@@ -65,8 +65,8 @@ public class TodoControllerThymeleaf {
     public String updateTodo(TodoDTO todoDto, ModelMap model, RedirectAttributes redirectAttributes) {
     	
     	TodoDTO existingTodo = new TodoDTO();
-    	existingTodo.setId(todoDto.getId());
-    	existingTodo.setUserName(todoDto.getUserName());
+    	existingTodo.setTodoId(todoDto.getTodoId());
+    	existingTodo.setRemainders(todoDto.getRemainders());
     	existingTodo.setDescription(todoDto.getDescription());
     	existingTodo.setDueDate(todoDto.getDueDate());
     	existingTodo.setPriorityLevels(todoDto.getPriorityLevels());

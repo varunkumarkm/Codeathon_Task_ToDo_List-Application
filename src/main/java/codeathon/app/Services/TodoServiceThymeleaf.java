@@ -10,6 +10,7 @@ import codeathon.app.Exception.ResourceNotFoundException;
 import codeathon.app.Payload.TodoDTO;
 import codeathon.app.Repositories.TodoRepository;
 
+
 @Service
 public class TodoServiceThymeleaf {
 
@@ -27,9 +28,9 @@ public class TodoServiceThymeleaf {
 		return todos.stream().map(todoDto -> mapToDTO(todoDto)).collect(Collectors.toList());
 	}
 	
-	public TodoDTO getTodoById(long id) {
-		Todo todo = todoRepository.findById(id).orElseThrow(
-				()-> new ResourceNotFoundException("Todo", "id", id)
+	public TodoDTO getTodoById(long todoId) {
+		Todo todo = todoRepository.findById(todoId).orElseThrow(
+				()-> new ResourceNotFoundException("Todo", "todoId", todoId)
 				);
 		TodoDTO todoDTO = mapToDTO(todo);
 		return todoDTO;
@@ -42,8 +43,8 @@ public class TodoServiceThymeleaf {
 		return dto;
 	}
 	
-	public void deleteTodo(Long id) {
-		todoRepository.deleteById(id);
+	public void deleteTodo(Long todoId) {
+		todoRepository.deleteById(todoId);
 	}
 	
 	public TodoDTO updateTodo(TodoDTO todoDto) {

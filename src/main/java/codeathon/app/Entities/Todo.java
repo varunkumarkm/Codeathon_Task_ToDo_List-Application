@@ -14,13 +14,11 @@ public class Todo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	
-    private String userName;
+	private long todoId;
     private String description;
     private String dueDate;
     private String priorityLevels;
     private String taskCategories;
+    private String remainders;
     
     }
